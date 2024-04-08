@@ -1,11 +1,16 @@
 <p>product-list works!</p>
 <h2>Product List</h2>
 <ul>
-<li (click)="selectedProduct = 'Webcam'">Webcam</li>
-<li (click)="selectedProduct = 'Microphone'">Microphone</li>
-<li (click)="selectedProduct = 'Wireless Keyboard'">Wireless
-Keyboard</li>
+    <li *ngFor="let product of products; let i=index" (click)="selectedProduct = product">
+        {{i+1}}-{{product}}
+    </li>
 </ul>
 
 
-<app-product-detail [name]="selectedProduct" (bought)="onBuy($event)"></app-product-detail>
+<app-product-detail *ngIf="selectedProduct; else noProduct"
+[name]="selectedProduct"
+(bought)="onBuy($event)">
+</app-product-detail>
+<ng-template #noProduct>
+  <p>No product selected!</p>
+</ng-template>

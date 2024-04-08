@@ -9,6 +9,7 @@ import { ProductDetailComponent } from '../product-detail/product-detail.compone
 export class ProductListComponent implements AfterViewInit {
   
   selectedProduct = 'Saly Abbo';
+  products = ['Webcam', 'Microphone', 'Wireless keyboard'];
   @ViewChild(ProductDetailComponent) productDetail : ProductDetailComponent | undefined;
   onBuy(name : string){
     window.alert(`You just bought ${name}!`);
