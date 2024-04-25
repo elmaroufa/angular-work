@@ -24,3 +24,21 @@ export class ProductsService {
     ];
   }
 }
+
+// @Injectable({
+//   providedIn: 'root'
+// })
+// export class SalyAbbo {
+
+//   workSkill = 'Web developer | software engineer';
+//   LANGAGE = 'PYTHON | JAVASCRIPT/TYPESCRIPT | JAVA';
+//   frameworkAndLibrary =  {
+//     odoo: {
+//       backend: "odoo/python",
+//       frontend: "OWL"
+//     },
+//     python: "Flask",
+//     java: "Spring boot",
+//     angular : "Angular",
+//   }
+// }

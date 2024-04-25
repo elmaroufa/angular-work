@@ -10,6 +10,7 @@ export class ProductViewService {
   constructor(private productService: ProductsService) { }
 
   getProduct(id: number): Product | undefined {
+
           const products = this.productService.getProducts();
           if (!this.product){
             this.product = products[id];
@@ -17,3 +18,5 @@ export class ProductViewService {
           return this.product;
   }
 }
+
+
