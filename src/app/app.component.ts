@@ -26,6 +26,6 @@ export class AppComponent {
 
   constructor(@Inject(APP_CONFIG) config: AppConfig)
   {
-    this.title$.subscribe(this.setTitle);
+    //this.title$.subscribe(this.setTitle);
   }
 }
