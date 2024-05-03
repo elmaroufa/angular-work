@@ -15,10 +15,15 @@ export class ProductViewComponent implements OnInit {
   constructor(private prodcutViewService: ProductViewService){}
 
   ngOnInit(): void {
-    const product = this.prodcutViewService.getProduct(this.id);
-    if (product) {
-      this.name = product.name;
-    }
+   this.getProductName();
   }
-
+   private getProductName(){
+     this.prodcutViewService.getProduct(this.id).subscribe(
+        product => {
+          if (product) {
+            this.name = product.name;
+          }
+        }
+     );
+   }
 }

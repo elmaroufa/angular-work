@@ -19,9 +19,16 @@ export class ProductListComponent implements AfterViewInit, OnInit {
     
   }
   ngOnInit(): void {
-    this.products =  this.productService.getProducts();
+    this.getProducts();
   }
-
+  
+  private getProducts(){
+    this.productService.getProducts().subscribe(
+      products => {
+        this.products = products;
+      }
+    )
+  }
   @ViewChild(ProductDetailComponent) productDetail : ProductDetailComponent | undefined;
 
   onBuy(){
