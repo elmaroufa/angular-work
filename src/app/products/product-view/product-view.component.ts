@@ -1,5 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 import { ProductViewService } from './product-view.service';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-product-view',
@@ -7,19 +8,27 @@ import { ProductViewService } from './product-view.service';
   styleUrl: './product-view.component.scss',
   providers: [ProductViewService]
 })
-export class ProductViewComponent implements OnInit {
+export class ProductViewComponent implements OnInit, OnDestroy {
 
   @Input() id = -1;
   name = '';
-  
-  constructor(private prodcutViewService: ProductViewService){}
+  private productSub = new Subject<void>();
 
+  constructor(private prodcutViewService: ProductViewService){}
+ 
   ngOnInit(): void {
    this.getProductName();
   }
+
+  ngOnDestroy(): void {
+    this.productSub.next();
+    this.productSub.complete();
+  }
+
    private getProductName(){
-     this.prodcutViewService.getProduct(this.id).subscribe(
-        product => {
+     this.prodcutViewService.getProduct(this.id).pipe(
+        takeUntil(this.productSub)
+     ).subscribe(product => {
           if (product) {
             this.name = product.name;
           }
